@@ -1,0 +1,33 @@
+{
+  "name": "fued",
+  "description": "Family Fued Website",
+  "version": "0.0.0",
+  "author": "Eran Hammer <eran@hammer.io> (http://hueniverse.com)",
+  "contributors": [],
+  "repository": "git://github.com/hueniverse/fued",
+  "main": "index",
+  "keywords": [
+    "nodeconf",
+    "fireworks",
+    "show"
+  ],
+  "engines": {
+    "node": ">=0.10.22"
+  },
+  "dependencies": {
+    "hapi": "6.x.x",
+    "handlebars": "1.x.x"
+  },
+  "devDependencies": {
+    "lab": "1.x.x"
+  },
+  "scripts": {
+    "test": "make test-cov"
+  },
+  "licenses": [
+    {
+      "type": "BSD",
+      "url": "http://github.com/hueniverse/fued/raw/master/LICENSE"
+    }
+  ]
+}
