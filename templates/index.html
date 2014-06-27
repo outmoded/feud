@@ -1,0 +1,38 @@
+<html>
+    <head>
+        <title>Node Family Fued</title>
+        <script src="questions.js"></script>
+        <script>
+            var ws = new WebSocket({{uri}});
+
+            var send = function (payload) {
+
+                ws.send(JSON.stringify(payload));
+            };
+
+            ws.onopen = function () {};
+            ws.onmessage = function (message) { 
+
+                var payload = JSON.parse(message.data);
+                if (payload.type === 'intro') {
+                    send({ type: 'hello', role: 'dashboard' });
+                }
+                else if (payload.type === 'question') {
+                    document.getElementById('question').innerHtml = questions[payload.id].title;
+                }
+            };
+        </script>
+    </head>
+    <body>
+        Role: {{isHost}}
+        <div id="question">Empty</div>
+        <div id="1">Empty</div>
+        <div id="2">Empty</div>
+        <div id="3">Empty</div>
+        <div id="4">Empty</div>
+        <div id="5">Empty</div>
+        <div id="6">Empty</div>
+        <div id="7">Empty</div>
+        <div id="8">Empty</div>
+    </body>
+</html>
