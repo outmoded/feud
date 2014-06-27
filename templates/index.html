@@ -1,38 +1,68 @@
 <html>
-    <head>
-        <title>Node Family Fued</title>
-        <script src="questions.js"></script>
-        <script>
-            var ws = new WebSocket({{uri}});
+<head>
+    <title>Node Family Fued</title>
+    <script src="questions.js"></script>
+    <script>
+        var isHost = '{{isHost}}' === 'true';
+        var qid = -1;
+        var ws = new WebSocket('{{uri}}');
 
-            var send = function (payload) {
+        var send = function (payload) {
 
-                ws.send(JSON.stringify(payload));
-            };
+            ws.send(JSON.stringify(payload));
+        };
 
-            ws.onopen = function () {};
-            ws.onmessage = function (message) { 
+        ws.onopen = function () {};
+        ws.onmessage = function (message) {
 
-                var payload = JSON.parse(message.data);
-                if (payload.type === 'intro') {
-                    send({ type: 'hello', role: 'dashboard' });
+            var payload = JSON.parse(message.data);
+            if (payload.type === 'intro') {
+                send({ type: 'hello', role: 'dashboard' });
+            }
+            else if (payload.type === 'question') {
+                qid = payload.id;
+                document.getElementById('question').innerHTML = questions[qid].title;
+                for (var i = 0; i < 8; ++i) {
+                    document.getElementById(i.toString()).innerHTML = (isHost && questions[qid].answers[i]) || '';
                 }
-                else if (payload.type === 'question') {
-                    document.getElementById('question').innerHtml = questions[payload.id].title;
-                }
-            };
-        </script>
-    </head>
-    <body>
-        Role: {{isHost}}
-        <div id="question">Empty</div>
-        <div id="1">Empty</div>
-        <div id="2">Empty</div>
-        <div id="3">Empty</div>
-        <div id="4">Empty</div>
-        <div id="5">Empty</div>
-        <div id="6">Empty</div>
-        <div id="7">Empty</div>
-        <div id="8">Empty</div>
-    </body>
+            }
+            else if (payload.type === 'answer' && !isHost) {
+                document.getElementById(payload.id).innerHTML = questions[qid].answers[payload.id];
+            }
+        };
+
+        var question = function (id) {
+
+            send({ type: 'question', id: id });
+        };
+
+        var answer = function (id) {
+
+            send({ type: 'answer', id: id });
+        };
+    </script>
+</head>
+<body>
+    {{#if isHost}}
+        <a href="#" onclick="question(++qid % questions.length);"><div id="question">Show Question</div></a>
+        <a href="#" onclick="answer('0');"><div id="0"></div></a>
+        <a href="#" onclick="answer('1');"><div id="1"></div></a>
+        <a href="#" onclick="answer('2');"><div id="2"></div></a>
+        <a href="#" onclick="answer('3');"><div id="3"></div></a>
+        <a href="#" onclick="answer('4');"><div id="4"></div></a>
+        <a href="#" onclick="answer('5');"><div id="5"></div></a>
+        <a href="#" onclick="answer('6');"><div id="6"></div></a>
+        <a href="#" onclick="answer('7');"><div id="7"></div></a>
+    {{else}}
+        <div id="question"></div>
+        <div id="0"></div>
+        <div id="1"></div>
+        <div id="2"></div>
+        <div id="3"></div>
+        <div id="4"></div>
+        <div id="5"></div>
+        <div id="6"></div>
+        <div id="7"></div>
+    {{/if}}
+</body>
 </html>
