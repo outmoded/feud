@@ -1,10 +1,10 @@
 {
-  "name": "fued",
-  "description": "Family Fued Website",
+  "name": "feud",
+  "description": "Family Feud Website",
   "version": "0.0.0",
   "author": "Eran Hammer <eran@hammer.io> (http://hueniverse.com)",
   "contributors": [],
-  "repository": "git://github.com/hueniverse/fued",
+  "repository": "git://github.com/hueniverse/feud",
   "main": "index",
   "keywords": [
     "nodeconf",
@@ -29,7 +29,7 @@
   "licenses": [
     {
       "type": "BSD",
-      "url": "http://github.com/hueniverse/fued/raw/master/LICENSE"
+      "url": "http://github.com/hueniverse/feud/raw/master/LICENSE"
     }
   ]
 }

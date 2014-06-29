@@ -3,7 +3,7 @@ body {
     height: 768px;
     overflow: hidden;
 
-    background-image: url('/fued.jpg');
+    background-image: url('/feud.jpg');
     background-repeat: no-repeat;
     font-size: 24px;
 }
@@ -72,4 +72,11 @@ body {
 
 .black {
     color: black;
+}
+
+.x {
+    color: red;
+    font-size: 600%;
+    font-family: arial;
+    font-weight: bold;
 }

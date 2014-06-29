@@ -1,6 +1,6 @@
 <html>
 <head>
-    <title>Node Family Fued</title>
+    <title>Node Family Feud</title>
     <script src="questions.js"></script>
     <script>
         var isHost = '{{isHost}}' === 'true';
@@ -77,6 +77,7 @@
     <button onclick="answer('7');" class="answer" id="answer-7"></button>
     <input type="text" class="score black" id="right" onkeyup="scoreR(event);"></input>
     <input type="text" class="score black" id="left" onkeyup="scoreL(event);"></input>
+    <span class='x' id="x1">X</span><span class='x' id="x2">X</span><span class='x' id="x3">X</span>
     {{else}}
     <div class="question" id="question"></div>
     <div class="answer" id="answer-0"></div>
@@ -89,6 +90,7 @@
     <div class="answer" id="answer-7"></div>
     <div class="score" id="right">0</div>
     <div class="score" id="left">0</div>
+    <span class='x' id="x1"></span><span class='x' id="x2"></span><span class='x' id="x3"></span>
     {{/if}}
 </body>
 </html>
