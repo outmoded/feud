@@ -29,6 +29,12 @@
             else if (payload.type === 'answer' && !isHost) {
                 document.getElementById('answer-' + payload.id).innerHTML = questions[qid].answers[payload.id];
             }
+            else if (payload.type === 'left' && !isHost) {
+                document.getElementById('left').innerHTML = payload.value;
+            }
+            else if (payload.type === 'right' && !isHost) {
+                document.getElementById('right').innerHTML = payload.value;
+            }
         };
 
         var question = function (id) {
@@ -40,6 +46,21 @@
 
             send({ type: 'answer', id: id });
         };
+
+        var scoreR = function (event) {
+
+            if (event.keyCode == 13) {
+                send({ type: 'right', value: document.getElementById('right').value });
+            }
+        };
+
+        var scoreL = function (event) {
+
+            if (event.keyCode == 13) {
+                send({ type: 'left', value: document.getElementById('left').value });
+            }
+        };
+
     </script>
     <link rel="stylesheet" type="text/css" href="theme.css">
 </head>
@@ -54,6 +75,8 @@
     <button onclick="answer('5');" class="answer" id="answer-5"></button>
     <button onclick="answer('6');" class="answer" id="answer-6"></button>
     <button onclick="answer('7');" class="answer" id="answer-7"></button>
+    <input type="text" class="score black" id="right" onkeyup="scoreR(event);"></input>
+    <input type="text" class="score black" id="left" onkeyup="scoreL(event);"></input>
     {{else}}
     <div class="question" id="question"></div>
     <div class="answer" id="answer-0"></div>
@@ -64,8 +87,8 @@
     <div class="answer" id="answer-5"></div>
     <div class="answer" id="answer-6"></div>
     <div class="answer" id="answer-7"></div>
+    <div class="score" id="right">0</div>
+    <div class="score" id="left">0</div>
     {{/if}}
-    <div class="score" id="right">50</div>
-    <div class="score" id="left">50</div>
 </body>
 </html>
