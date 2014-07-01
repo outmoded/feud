@@ -23,11 +23,11 @@
                 qid = payload.id;
                 document.getElementById('question').innerHTML = questions[qid].title;
                 for (var i = 0; i < 8; ++i) {
-                    document.getElementById(i.toString()).innerHTML = (isHost && questions[qid].answers[i]) || '';
+                    document.getElementById('answer-' + i.toString()).innerHTML = (isHost && questions[qid].answers[i]) || '';
                 }
             }
             else if (payload.type === 'answer' && !isHost) {
-                document.getElementById(payload.id).innerHTML = questions[qid].answers[payload.id];
+                document.getElementById('answer-' + payload.id).innerHTML = questions[qid].answers[payload.id];
             }
         };
 
@@ -41,41 +41,31 @@
             send({ type: 'answer', id: id });
         };
     </script>
-    <style>
-        body {
-            background-image: url('/fued.jpg');
-            background-repeat: no-repeat;
-        }
-        div.answer {
-
-        }
-    </style>
+    <link rel="stylesheet" type="text/css" href="theme.css">
 </head>
 <body>
     {{#if isHost}}
-    <a href="#" onclick="question(++qid % questions.length);"><div class="question" id="question">Show Question</div></a>
-    <a href="#" onclick="answer('0');"><div class="answer" id="0"></div></a>
-    <a href="#" onclick="answer('1');"><div class="answer" id="1"></div></a>
-    <a href="#" onclick="answer('2');"><div class="answer" id="2"></div></a>
-    <a href="#" onclick="answer('3');"><div class="answer" id="3"></div></a>
-    <a href="#" onclick="answer('4');"><div class="answer" id="4"></div></a>
-    <a href="#" onclick="answer('5');"><div class="answer" id="5"></div></a>
-    <a href="#" onclick="answer('6');"><div class="answer" id="6"></div></a>
-    <a href="#" onclick="answer('7');"><div class="answer" id="7"></div></a>
-    <div class="score" id="right"></div>
-    <div class="score" id="left"></div>
+    <button onclick="question(++qid % questions.length);" class="question" id="question">Show Question</button>
+    <button onclick="answer('0');" class="answer" id="answer-0"></button>
+    <button onclick="answer('1');" class="answer" id="answer-1"></button>
+    <button onclick="answer('2');" class="answer" id="answer-2"></button>
+    <button onclick="answer('3');" class="answer" id="answer-3"></button>
+    <button onclick="answer('4');" class="answer" id="answer-4"></button>
+    <button onclick="answer('5');" class="answer" id="answer-5"></button>
+    <button onclick="answer('6');" class="answer" id="answer-6"></button>
+    <button onclick="answer('7');" class="answer" id="answer-7"></button>
     {{else}}
     <div class="question" id="question"></div>
-    <div class="answer" id="0"></div>
-    <div class="answer" id="1"></div>
-    <div class="answer" id="2"></div>
-    <div class="answer" id="3"></div>
-    <div class="answer" id="4"></div>
-    <div class="answer" id="5"></div>
-    <div class="answer" id="6"></div>
-    <div class="answer" id="7"></div>
-    <div class="score" id="right"></div>
-    <div class="score" id="left"></div>
+    <div class="answer" id="answer-0"></div>
+    <div class="answer" id="answer-1"></div>
+    <div class="answer" id="answer-2"></div>
+    <div class="answer" id="answer-3"></div>
+    <div class="answer" id="answer-4"></div>
+    <div class="answer" id="answer-5"></div>
+    <div class="answer" id="answer-6"></div>
+    <div class="answer" id="answer-7"></div>
     {{/if}}
+    <div class="score" id="right">50</div>
+    <div class="score" id="left">50</div>
 </body>
 </html>

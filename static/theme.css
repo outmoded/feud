@@ -1,0 +1,71 @@
+body {
+    width: 1024px;
+    height: 768px;
+    overflow: hidden;
+
+    background-image: url('/fued.jpg');
+    background-repeat: no-repeat;
+    font-size: 24px;
+}
+.question, .answer {
+    position: absolute;
+    -webkit-appearance: none;
+
+    height: 64px;
+    line-height: 64px;
+    vertical-align: middle;
+    text-align: center;
+
+    background: transparent;
+    border: none;
+    color: black;
+    font-size: inherit;
+}
+
+.question {
+    top: 170px;
+    left: 235px;
+    width: 555px;
+}
+.answer {
+    width: 263px;
+}
+#answer-0, #answer-2, #answer-4, #answer-6 {
+    left: 235px;
+}
+#answer-1, #answer-3, #answer-5, #answer-7 {
+    left: 529px;
+}
+#answer-0, #answer-1 {
+    top: 281px;
+}
+#answer-2, #answer-3 {
+    top: 367px;
+}
+#answer-4, #answer-5 {
+    top: 453px;
+}
+#answer-6, #answer-7 {
+    top: 539px;
+}
+
+.score {
+    position: absolute;
+
+    top: 271px;
+    width: 132px;
+    height: 89px;
+    line-height: 89px;
+    vertical-align: middle;
+    text-align: center;
+
+    color: white;
+    font-size: 300%;
+    font-weight: bold;
+}
+#right {
+    left: 857px;
+}
+#left {
+    left: 36px;
+}
