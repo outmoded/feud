@@ -80,3 +80,9 @@ body {
     font-family: arial;
     font-weight: bold;
 }
+
+#xxx {
+    position: absolute;
+    left: 370px;
+    top: 620px;
+}
